@@ -6,6 +6,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.personalexpensestracker.data.room.entity.Transaction
+import com.example.personalexpensestracker.ui.utility.TransactionCategory
+import com.example.personalexpensestracker.ui.utility.TransactionType
 import kotlinx.coroutines.flow.Flow
 
 
@@ -19,25 +21,33 @@ interface TransactionDao {
 
     @Query("""
         SELECT * FROM `transaction`
-        ORDER BY id DESC
+        ORDER BY date DESC
     """)
     fun getAllTransactions(): Flow<List<Transaction>>
 
     @Query("""
         SELECT * FROM `transaction` 
-        ORDER BY id DESC
+        ORDER BY date DESC
         LIMIT(5)
         
     """)
     fun getRecentTransactions(): Flow<List<Transaction>>
 
+    // Filter by TYPE (Income or Expense)
     @Query("""
-        SELECT * FROM `transaction`
-        WHERE category = :query
-        OR type = :query
-        ORDER BY id DESC
-    """)
-    fun getTransactionBasedOnTypeOrCategory(query: String): Flow<List<Transaction>>
+    SELECT * FROM `transaction`
+    WHERE type = :type
+    ORDER BY date DESC
+""")
+    fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>>
+
+    // Filter by CATEGORY (Food, Transport etc)
+    @Query("""
+    SELECT * FROM `transaction`
+    WHERE category = :category
+    ORDER BY date DESC
+""")
+    fun getTransactionsByCategory(category: TransactionCategory): Flow<List<Transaction>>
 
     @Query("""
         SELECT SUM(amount) FROM `transaction`

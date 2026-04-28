@@ -2,6 +2,8 @@ package com.example.personalexpensestracker.data.repository
 
 import com.example.personalexpensestracker.data.room.dao.TransactionDao
 import com.example.personalexpensestracker.data.room.entity.Transaction
+import com.example.personalexpensestracker.ui.utility.TransactionCategory
+import com.example.personalexpensestracker.ui.utility.TransactionType
 import kotlinx.coroutines.flow.Flow
 
 class OfflineTransactionRepository(
@@ -14,8 +16,10 @@ class OfflineTransactionRepository(
     override fun getAllTransactions(): Flow<List<Transaction>> = transactionDao.getAllTransactions()
 
     override fun getRecentTransactions(): Flow<List<Transaction>> = transactionDao.getRecentTransactions()
+    override fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>> = transactionDao.getTransactionsByType(type)
 
-    override fun getTransactionBasedOnTypeOrCategory(query: String): Flow<List<Transaction>> = transactionDao.getTransactionBasedOnTypeOrCategory(query)
+    override fun getTransactionsByCategory(category: TransactionCategory): Flow<List<Transaction>> = transactionDao.getTransactionsByCategory(category)
+
 
     override fun getTotalIncome(): Flow<Double> = transactionDao.getTotalIncome()
 
