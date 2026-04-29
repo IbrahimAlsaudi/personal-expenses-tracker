@@ -19,6 +19,13 @@ class AddTransactionViewModel(
     private val workManagerRepository: WorkManagerRepository
 ): ViewModel() {
 
+    private val _isExpenseSelected = MutableStateFlow(true)
+    fun onIncomeSelected() {
+        _isExpenseSelected.value = false
+    }
+    fun onExpensesSelected() {
+        _isExpenseSelected.value = true
+    }
     private val _type = MutableStateFlow<TransactionType>(TransactionType.EXPENSE)
 
     fun changeType(transactionType: TransactionType) {
@@ -63,13 +70,22 @@ class AddTransactionViewModel(
          }
     }
 
-    val uiState = combine(_type, _amount, _category, _note) { type, amount, category, note ->
+    val uiState = combine(
+        _type,
+        _amount,
+        _category,
+        _note,
+        _isExpenseSelected,
+//        _isIncomeSelected
+    ) { type, amount, category, note, isExpenseSelected ->
         AddTransactionUiState(
             transactionType = type,
             amount = amount,
             category = category,
             note = note,
-            isFormValid = amount.isNotEmpty() && category != null
+            isFormValid = amount.isNotEmpty() && category != null,
+            isExpenseSelected = isExpenseSelected,
+
         )
     }.stateIn(
         scope = viewModelScope,
@@ -84,5 +100,6 @@ data class AddTransactionUiState(
     val category: TransactionCategory? = null,
     val note: String? = null,
     val date: Long = System.currentTimeMillis(),
-    val isFormValid: Boolean = false
+    val isFormValid: Boolean = false,
+    val isExpenseSelected: Boolean = true,
 )

@@ -37,13 +37,13 @@ class DashboardViewModel(
 
     private val _exchangeRates = exchangeRateRepository.getExchangeRates().distinctUntilChanged()
 
-    init{
-        viewModelScope.launch {
-            if(showExchangeRates.first()){
-                exchangeRateRepository.refreshRates()
-            }
-        }
-    }
+//    init{
+//        viewModelScope.launch {
+//            if(showExchangeRates.first()){
+//                exchangeRateRepository.refreshRates()
+//            }
+//        }
+//    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<DashboardUiState> = showExchangeRates.flatMapLatest { isEnabled ->

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Personal Expenses Tracker</string>
+    <string name="total_balance">Current balance</string>
+    <string name="total_balance_format">EGP %.2f</string>
+    <string name="add_balance_format">EGP 0.00</string>
+    <string name="exchange_rate_format">%.3f</string>
+    <string name="income_format">+%.0f</string>
+    <string name="expense_format">-%.0f</string>
+    <string name="income">Income</string>
+    <string name="expenses">Expenses</string>
+    <string name="exchange_rates">Exchange rates</string>
+    <string name="usd">USD</string>
+    <string name="recent_transactions">Recent transactions</string>
+    <string name="new_transaction">New Transaction</string>
+    <string name="category">Category</string>
+    <string name="add_note">Add a note</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="save_transaction">Save transaction</string>
+    <string name="note_optional">Note (optional)</string>
 </resources>

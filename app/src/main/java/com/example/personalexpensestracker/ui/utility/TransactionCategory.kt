@@ -1,6 +1,6 @@
 package com.example.personalexpensestracker.ui.utility
 
-enum class TransactionCategory(val uiName: String, val type: TransactionType) {
+enum class TransactionCategory(val uiName: String, val type: TransactionType,) {
 
     FOOD("Food", TransactionType.EXPENSE),
     TRANSPORT("Transport", TransactionType.EXPENSE),
