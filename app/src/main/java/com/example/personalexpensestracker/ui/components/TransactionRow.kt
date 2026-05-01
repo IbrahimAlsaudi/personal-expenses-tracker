@@ -3,6 +3,7 @@ package com.example.personalexpensestracker.ui.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.data.room.entity.Transaction
@@ -32,11 +34,32 @@ fun TransactionRow(
             contentDescription = "icon"
         )
         Spacer(Modifier.width(8.dp))
-        Column() {
-            Text(text = transaction.category.uiName)
-            Text(text = transaction.date.toTimeAgo())
+        Column(modifier = Modifier.weight(1f)) {
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Text(
+                    text = transaction.category.uiName,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
+                )
+                if(transaction.note != null) {
+                    Text(
+                        text = "  ${transaction.note}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.weight(1f),
+                        overflow = TextOverflow.Ellipsis,
+                        maxLines = 1
+                    )
+                }
+            }
+
+            Text(
+                text = transaction.date.toTimeAgo(),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
-        Spacer(Modifier.weight(1f))
         Text(
             text = stringResource(
                 if (transaction.type == TransactionType.INCOME) R.string.income_format else R.string.expense_format,
@@ -47,7 +70,8 @@ fun TransactionRow(
             color = if (transaction.type == TransactionType.INCOME)
                 Green400
             else
-                Red400
+                Red400,
+//            modifier = Modifier.weight(1f)
         )
     }
 }

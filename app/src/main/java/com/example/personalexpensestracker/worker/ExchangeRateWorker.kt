@@ -8,10 +8,9 @@ import com.example.personalexpensestracker.data.repository.UserPreferences
 import kotlinx.coroutines.flow.first
 
 class ExchangeRateWorker(
-
-    private val exchangeRateRepository: ExchangeRateRepository,
     context: Context,
     workerParameters: WorkerParameters,
+    private val exchangeRateRepository: ExchangeRateRepository,
     private val userPreferences: UserPreferences
 ): CoroutineWorker(context, workerParameters) {
 
@@ -20,6 +19,7 @@ class ExchangeRateWorker(
         if (!isRatesEnabled) return Result.success()
 
         exchangeRateRepository.refreshRates()
+
         return Result.success()
     }
 

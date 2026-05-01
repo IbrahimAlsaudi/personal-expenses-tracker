@@ -1,6 +1,7 @@
 package com.example.personalexpensestracker.ui.screens.addtransaction
 
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
+import com.example.personalexpensestracker.ui.components.NoteTextField
 import com.example.personalexpensestracker.ui.theme.Blue100
 import com.example.personalexpensestracker.ui.theme.Blue200
 import com.example.personalexpensestracker.ui.theme.Blue400
@@ -175,28 +177,16 @@ fun AddNoteColumn(
             text = stringResource(R.string.note_optional),
             style = MaterialTheme.typography.labelLarge
         )
-        TextField(
+        NoteTextField(
             value = note,
             onValueChange = onNoteChange,
-            modifier = Modifier.fillMaxWidth(),
-            placeholder = { Text(stringResource(R.string.add_note)) },
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            ),
-            singleLine = true,
-            leadingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.outline_other_admission_24),
-                    contentDescription = null
-                )
-            }
+            placeHolder =  R.string.add_note
         )
+
     }
 }
+
+
 
 @Composable
 fun AmountTextField(

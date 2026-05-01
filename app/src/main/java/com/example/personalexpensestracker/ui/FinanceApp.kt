@@ -24,6 +24,8 @@ import com.example.personalexpensestracker.ui.navigation.Destination
 import com.example.personalexpensestracker.ui.navigation.navItemList
 import com.example.personalexpensestracker.ui.screens.addtransaction.AddTransactionScreen
 import com.example.personalexpensestracker.ui.screens.dashboard.DashboardScreen
+import com.example.personalexpensestracker.ui.screens.history.HistoryScreen
+import com.example.personalexpensestracker.ui.screens.settings.SettingsScreen
 
 @Composable
 fun FinanceApp(
@@ -71,12 +73,11 @@ fun FinanceApp(
                 AddTransactionScreen(navigateUp = { navController.navigateUp() })
             }
             composable(route = Destination.History.route) {
-
+                HistoryScreen()
 
             }
             composable(route = Destination.Settings.route) {
-
-
+                SettingsScreen()
             }
         }
     }

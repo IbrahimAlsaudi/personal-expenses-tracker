@@ -1,23 +1,19 @@
 package com.example.personalexpensestracker.ui.screens.history
 
-import androidx.compose.ui.graphics.Path.Companion.combine
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.personalexpensestracker.data.repository.TransactionRepository
 import com.example.personalexpensestracker.data.room.entity.Transaction
-import com.example.personalexpensestracker.ui.screens.addtransaction.AddTransactionUiState
 import com.example.personalexpensestracker.ui.utility.TransactionCategory
 import com.example.personalexpensestracker.ui.utility.TransactionType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 
 class HistoryViewModel(
@@ -35,6 +31,7 @@ class HistoryViewModel(
     private val filter = MutableStateFlow<TransactionFilter>(TransactionFilter.None)
     fun onFilterChanged(transactionFilter: TransactionFilter) {
         filter.value = transactionFilter
+
     }
 
 

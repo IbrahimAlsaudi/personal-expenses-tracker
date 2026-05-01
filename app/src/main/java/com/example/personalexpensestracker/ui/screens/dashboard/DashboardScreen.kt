@@ -28,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.data.room.entity.ExchangeRate
+import com.example.personalexpensestracker.ui.components.FinanceStat
 import com.example.personalexpensestracker.ui.components.TransactionRow
 import com.example.personalexpensestracker.ui.theme.Gray400
 import com.example.personalexpensestracker.ui.theme.Green400
@@ -131,35 +132,7 @@ private fun MyFinanceCard(
     }
 }
 
-@Composable
-private fun FinanceStat(
-    label: String,
-    amount: Double,
-    isIncome: Boolean,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelMedium
-        )
-        Text(
-            text = stringResource(
-                if (isIncome) R.string.income_format else R.string.expense_format,
-                amount
-            ),
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold,
-            color = if (isIncome)
-                Green400
-            else
-                Red400
-        )
-    }
-}
+
 
 @Composable
 fun ExchangeRatesRow(

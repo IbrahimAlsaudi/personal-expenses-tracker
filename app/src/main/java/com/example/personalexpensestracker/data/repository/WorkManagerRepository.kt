@@ -24,7 +24,7 @@ class WorkManagerRepositoryImpl(context: Context): WorkManagerRepository {
 
     override fun scheduleExchangeRateRefresh() {
         val request = PeriodicWorkRequestBuilder<ExchangeRateWorker>(
-            17, TimeUnit.MINUTES
+            5, TimeUnit.HOURS
         ).setConstraints(Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
@@ -39,7 +39,7 @@ class WorkManagerRepositoryImpl(context: Context): WorkManagerRepository {
 
     override fun scheduleDailySummary() {
         val dailyRequest = PeriodicWorkRequestBuilder<DailySummaryReminder>(
-            24, TimeUnit.HOURS
+            16, TimeUnit.MINUTES
         ).build()
         
         workManager.enqueueUniquePeriodicWork(

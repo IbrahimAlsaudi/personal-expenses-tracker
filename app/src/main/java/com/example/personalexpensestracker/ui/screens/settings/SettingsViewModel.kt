@@ -1,5 +1,6 @@
 package com.example.personalexpensestracker.ui.screens.settings
 
+import androidx.compose.material3.SheetState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.personalexpensestracker.data.repository.UserPreferences
@@ -24,21 +25,25 @@ class SettingsViewModel(
 ) : ViewModel() {
 
     private val budgetQuery = MutableStateFlow("")
+    private val showBottomSheet = MutableStateFlow(false)
+    private val budgetAlert = userPreferences.budgetAlert
+    private val dailySummary = userPreferences.allowDailySummary
+    private val exchangeRate = userPreferences.showExchangeRate
 
 
-
-
-    val uiState: StateFlow<SettingsUiState> = combine(
+    val uiState= combine(
         budgetQuery,
-        userPreferences.allowDailySummary,
-        userPreferences.budgetAlert,
-        userPreferences.showExchangeRate
-    ) { budget, dailySummary, alert, showExchange ->
+        dailySummary,
+        budgetAlert,
+        exchangeRate,
+        showBottomSheet
+    ) { budget, dailySummary, alert, showExchange, bottomSheet ->
         SettingsUiState(
             monthlyBudget = budget,
             dailySummary = dailySummary,
             budgetAlert = alert,
-            showExchangeRate = showExchange
+            showExchangeRate = showExchange,
+            showBottomSheetState = bottomSheet
         )
     }.stateIn(
         scope = viewModelScope,
@@ -49,6 +54,7 @@ class SettingsViewModel(
     fun onMonthlyBudgetChanged(budget: String) {
         budgetQuery.value = budget
     }
+
 
     fun onDailySummaryChanged(enabled: Boolean) {
         viewModelScope.launch {
@@ -66,6 +72,13 @@ class SettingsViewModel(
         viewModelScope.launch {
             userPreferences.saveShowExchangeRate(enabled)
         }
+    }
+    fun openBottomSheet() {
+        showBottomSheet.value = true
+    }
+
+    fun closeBottomSheet() {
+        showBottomSheet.value = false
     }
 
     init {
@@ -95,4 +108,5 @@ data class SettingsUiState(
     val dailySummary: Boolean = true,
     val budgetAlert: Boolean = true,
     val showExchangeRate: Boolean = true,
+    val showBottomSheetState: Boolean = false,
 )
