@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">متتبع المصاريف الشخصية</string>
+    <string name="total_balance">الرصيد الحالي</string>
+    <string name="total_balance_format">EGP %.2f</string>
+    <string name="saved_budget_format">EGP %s</string>
+    <string name="add_balance_format">EGP 0.00</string>
+    <string name="exchange_rate_format">%.3f</string>
+    <string name="income_format">+%.0f</string>
+    <string name="expense_format">-%.0f</string>
+    <string name="income">إيرادات</string>
+    <string name="expenses">مصروفات</string>
+    <string name="exchange_rates">أسعار الصرف</string>
+    <string name="usd">USD</string>
+    <string name="recent_transactions">المعاملات الأخيرة</string>
+    <string name="new_transaction">معاملة جديدة</string>
+    <string name="category">الفئة</string>
+    <string name="add_note">أضف ملاحظة</string>
+    <string name="dashboard">الرئيسية</string>
+    <string name="save_transaction">حفظ المعاملة</string>
+    <string name="note_optional">ملاحظة (اختياري)</string>
+    <string name="history">السجل</string>
+    <string name="all">الكل</string>
+    <string name="search_transaction">البحث عن معاملة</string>
+    <string name="settings">الإعدادات</string>
+    <string name="preferences">التفضيلات</string>
+    <string name="monthly_budget">الميزانية الشهرية</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="daily_summary">ملخص يومي</string>
+    <string name="budget_alert">تنبيه الميزانية</string>
+    <string name="show_exchange_rates">عرض أسعار الصرف</string>
+    <string name="display">العرض</string>
+    <string name="done">تم</string>
+    <string name="last_updated">آخر تحديث %s</string>
+    <string name="bottom_sheet_text">حدد الحد الأقصى للإنفاق الشهري لتلقي تنبيهات الميزانية.</string>
+
+    <!-- Types -->
+    <string name="type_expense">مصروف</string>
+    <string name="type_income">دخل</string>
+
+    <!-- Categories -->
+    <string name="category_food">طعام</string>
+    <string name="category_transport">مواصلات</string>
+    <string name="category_shopping">تسوق</string>
+    <string name="category_health">صحة</string>
+    <string name="category_entertainment">ترفيه</string>
+    <string name="category_other">أخرى</string>
+    <string name="category_salary">راتب</string>
+    <string name="category_freelance">عمل حر</string>
+    <string name="category_business">عمل تجاري</string>
+    <string name="category_gift">هدية</string>
+
+    <!-- Time Ago -->
+    <string name="just_now">الآن</string>
+    <string name="yesterday">أمس</string>
+    <plurals name="minutes_ago">
+        <item quantity="zero">منذ أقل من دقيقة</item>
+        <item quantity="one">منذ دقيقة</item>
+        <item quantity="two">منذ دقيقتين</item>
+        <item quantity="few">منذ %d دقائق</item>
+        <item quantity="many">منذ %d دقيقة</item>
+        <item quantity="other">منذ %d دقيقة</item>
+    </plurals>
+    <plurals name="hours_ago">
+        <item quantity="zero">منذ أقل من ساعة</item>
+        <item quantity="one">منذ ساعة</item>
+        <item quantity="two">منذ ساعتين</item>
+        <item quantity="few">منذ %d ساعات</item>
+        <item quantity="many">منذ %d ساعة</item>
+        <item quantity="other">منذ %d ساعة</item>
+    </plurals>
+    <plurals name="days_ago">
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">منذ يوم</item>
+        <item quantity="two">منذ يومين</item>
+        <item quantity="few">منذ %d أيام</item>
+        <item quantity="many">منذ %d يوماً</item>
+        <item quantity="other">منذ %d يوماً</item>
+    </plurals>
+</resources>

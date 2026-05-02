@@ -1,10 +1,8 @@
 package com.example.personalexpensestracker.ui.screens.addtransaction
 
 
-import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -13,19 +11,16 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
@@ -40,7 +35,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -53,11 +47,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.ui.components.NoteTextField
-import com.example.personalexpensestracker.ui.theme.Blue100
 import com.example.personalexpensestracker.ui.theme.Blue200
-import com.example.personalexpensestracker.ui.theme.Blue400
 import com.example.personalexpensestracker.ui.theme.Green100
-import com.example.personalexpensestracker.ui.theme.Green400
 import com.example.personalexpensestracker.ui.utility.TransactionCategory
 import com.example.personalexpensestracker.ui.utility.TransactionType
 import com.example.personalexpensestracker.ui.utility.icon
@@ -180,12 +171,11 @@ fun AddNoteColumn(
         NoteTextField(
             value = note,
             onValueChange = onNoteChange,
-            placeHolder =  R.string.add_note
+            placeHolder = R.string.add_note
         )
 
     }
 }
-
 
 
 @Composable
@@ -248,7 +238,7 @@ fun CategoriesFlowRow(
                     modifier = Modifier.height(40.dp),
                     selected = selectedCategory == category,
                     onClick = { onCategoryClick(category) },
-                    label = { Text(category.uiName) },
+                    label = { Text(stringResource(category.uiName)) },
                     leadingIcon = {
                         Icon(
                             painter = category.icon(),
@@ -302,7 +292,7 @@ fun TransactionTypeSelector(
                 containerColor = expenseColor,
                 contentColor = expenseContentColor
             ),
-        modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(R.string.expenses)
@@ -315,7 +305,7 @@ fun TransactionTypeSelector(
                 containerColor = incomeColor,
                 contentColor = incomeContentColor
             ),
-                    modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(R.string.income)

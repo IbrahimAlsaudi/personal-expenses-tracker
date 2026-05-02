@@ -7,25 +7,20 @@ import com.example.personalexpensestracker.data.repository.TransactionRepository
 import com.example.personalexpensestracker.data.repository.UserPreferences
 import com.example.personalexpensestracker.data.room.entity.ExchangeRate
 import com.example.personalexpensestracker.data.room.entity.Transaction
-import com.example.personalexpensestracker.network.ExchangeRateResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import kotlin.collections.emptyList
 
 class DashboardViewModel(
-    private val transactionRepository: TransactionRepository,
-    private val exchangeRateRepository: ExchangeRateRepository,
-    private val userPreferences: UserPreferences,
-): ViewModel() {
+    transactionRepository: TransactionRepository,
+    exchangeRateRepository: ExchangeRateRepository,
+    userPreferences: UserPreferences,
+) : ViewModel() {
 
 
     private val showExchangeRates = userPreferences.showExchangeRate
@@ -33,24 +28,18 @@ class DashboardViewModel(
     private val _totalExpenses = transactionRepository.getTotalExpense().distinctUntilChanged()
 
 
-    private val _recentTransactions = transactionRepository.getRecentTransactions().distinctUntilChanged()
+    private val _recentTransactions =
+        transactionRepository.getRecentTransactions().distinctUntilChanged()
 
     private val _exchangeRates = exchangeRateRepository.getExchangeRates().distinctUntilChanged()
 
-//    init{
-//        viewModelScope.launch {
-//            if(showExchangeRates.first()){
-//                exchangeRateRepository.refreshRates()
-//            }
-//        }
-//    }
-
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<DashboardUiState> = showExchangeRates.flatMapLatest { isEnabled ->
-        combine(_totalIncome,
+        combine(
+            _totalIncome,
             _totalExpenses,
             _recentTransactions,
-            if(isEnabled) _exchangeRates else flowOf(emptyList()),
+            if (isEnabled) _exchangeRates else flowOf(emptyList()),
         )
         { totalIncome, totalExpenses, recentTransactions, exchangeRates ->
             DashboardUiState(
@@ -77,4 +66,4 @@ data class DashboardUiState(
     val exchangeRates: List<ExchangeRate> = emptyList(),
     val recentTransactions: List<Transaction> = emptyList(),
     val showExchangeRates: Boolean = true
-    )
+)

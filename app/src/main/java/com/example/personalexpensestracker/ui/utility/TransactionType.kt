@@ -1,6 +1,9 @@
 package com.example.personalexpensestracker.ui.utility
 
-enum class TransactionType(val uiName: String) {
-    EXPENSE("Expense"),
-    INCOME("Income")
+import androidx.annotation.StringRes
+import com.example.personalexpensestracker.R
+
+enum class TransactionType(@StringRes val uiName: Int) {
+    EXPENSE(R.string.type_expense),
+    INCOME(R.string.type_income)
 }

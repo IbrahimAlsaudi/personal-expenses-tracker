@@ -14,10 +14,11 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 
 class HistoryViewModel(
-    transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository
 ): ViewModel() {
     private val income = transactionRepository.getTotalIncome()
     private val expenses = transactionRepository.getTotalExpense()
@@ -69,6 +70,12 @@ class HistoryViewModel(
                     }
 
             else -> transactionRepository.getAllTransactions()
+        }
+    }
+
+    fun deleteTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            transactionRepository.deleteTransaction(transaction)
         }
     }
 

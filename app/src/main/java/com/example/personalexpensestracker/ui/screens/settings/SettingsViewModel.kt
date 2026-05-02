@@ -1,13 +1,11 @@
 package com.example.personalexpensestracker.ui.screens.settings
 
-import androidx.compose.material3.SheetState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.personalexpensestracker.data.repository.UserPreferences
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -31,7 +29,7 @@ class SettingsViewModel(
     private val exchangeRate = userPreferences.showExchangeRate
 
 
-    val uiState= combine(
+    val uiState = combine(
         budgetQuery,
         dailySummary,
         budgetAlert,
@@ -73,6 +71,7 @@ class SettingsViewModel(
             userPreferences.saveShowExchangeRate(enabled)
         }
     }
+
     fun openBottomSheet() {
         showBottomSheet.value = true
     }
@@ -84,8 +83,8 @@ class SettingsViewModel(
     init {
         viewModelScope.launch {
             val savedBudget = userPreferences.monthlyBudget.first()
-            if(budgetQuery.value.isEmpty()) {
-                budgetQuery.value = if(savedBudget == 0.0) "" else savedBudget.toString()
+            if (budgetQuery.value.isEmpty()) {
+                budgetQuery.value = if (savedBudget == 0.0) "" else savedBudget.toString()
             }
         }
 

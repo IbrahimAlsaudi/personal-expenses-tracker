@@ -26,7 +26,7 @@ class AddTransactionViewModel(
     fun onExpensesSelected() {
         _isExpenseSelected.value = true
     }
-    private val _type = MutableStateFlow<TransactionType>(TransactionType.EXPENSE)
+    private val _type = MutableStateFlow(TransactionType.EXPENSE)
 
     fun changeType(transactionType: TransactionType) {
         _type.value = transactionType

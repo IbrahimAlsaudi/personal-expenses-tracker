@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val baseUrl = "https://open.er-api.com/"
+    private const val BASE_URL = "https://open.er-api.com/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
@@ -15,7 +15,7 @@ object RetrofitInstance {
         .build()
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(baseUrl)
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .build()
 

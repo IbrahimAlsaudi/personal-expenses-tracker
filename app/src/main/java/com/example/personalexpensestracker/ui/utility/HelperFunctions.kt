@@ -5,8 +5,9 @@ package com.example.personalexpensestracker.ui.utility
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import com.example.personalexpensestracker.R
 import java.text.SimpleDateFormat
 import java.time.Duration
@@ -24,6 +25,7 @@ fun Long.toFormattedDate(): String {
     return dateFormatter.format(Date(this))
 }
 
+@Composable
 fun Long.toTimeAgo(): String {
     val now = Instant.now()
     val time = Instant.ofEpochMilli(this)
@@ -36,11 +38,11 @@ fun Long.toTimeAgo(): String {
     val days = hours / 24
 
     return when {
-        seconds < 60 -> "Just now"
-        minutes < 60 -> "$minutes minute${if (minutes > 1) "s" else ""} ago"
-        hours < 24 -> "$hours hour${if (hours > 1) "s" else ""} ago"
-        days == 1L -> "Yesterday"
-        days < 7 -> "$days days ago"
+        seconds < 60 -> stringResource(R.string.just_now)
+        minutes < 60 -> pluralStringResource(R.plurals.minutes_ago, minutes.toInt(), minutes.toInt())
+        hours < 24 -> pluralStringResource(R.plurals.hours_ago, hours.toInt(), hours.toInt())
+        days == 1L -> stringResource(R.string.yesterday)
+        days < 7 -> pluralStringResource(R.plurals.days_ago, days.toInt(), days.toInt())
         else -> this.toFormattedDate() // fallback to full date
     }
 }

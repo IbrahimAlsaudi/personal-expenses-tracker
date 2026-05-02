@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CardDefaults
@@ -31,7 +30,6 @@ import com.example.personalexpensestracker.data.room.entity.ExchangeRate
 import com.example.personalexpensestracker.ui.components.FinanceStat
 import com.example.personalexpensestracker.ui.components.TransactionRow
 import com.example.personalexpensestracker.ui.theme.Gray400
-import com.example.personalexpensestracker.ui.theme.Green400
 import com.example.personalexpensestracker.ui.theme.Red400
 import com.example.personalexpensestracker.ui.utility.toTimeAgo
 
@@ -108,7 +106,8 @@ private fun MyFinanceCard(
             Text(
                 text = stringResource(R.string.total_balance_format, balance),
                 style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = if(balance < 0) Red400 else MaterialTheme.colorScheme.onPrimary
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -131,7 +130,6 @@ private fun MyFinanceCard(
         }
     }
 }
-
 
 
 @Composable
@@ -162,9 +160,9 @@ fun ExchangeRatesRow(
             }
         }
         Spacer(Modifier.height(8.dp))
+        val timeAgo = if (ratesList.isNotEmpty()) ratesList.first().lastUpdated.toTimeAgo() else ""
         Text(
-            text = "Last updated " +
-                    if (ratesList.isNotEmpty()) ratesList.first().lastUpdated.toTimeAgo() else "",
+            text = stringResource(R.string.last_updated, timeAgo),
             style = MaterialTheme.typography.bodySmall,
             color = Gray400
 

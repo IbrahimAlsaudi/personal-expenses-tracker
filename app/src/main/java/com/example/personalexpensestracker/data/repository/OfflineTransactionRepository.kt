@@ -8,25 +8,33 @@ import kotlinx.coroutines.flow.Flow
 
 class OfflineTransactionRepository(
     private val transactionDao: TransactionDao
-): TransactionRepository {
-    override suspend fun addTransaction(transaction: Transaction) = transactionDao.addTransaction(transaction)
+) : TransactionRepository {
+    override suspend fun addTransaction(transaction: Transaction) =
+        transactionDao.addTransaction(transaction)
 
-    override suspend fun deleteTransaction(transaction: Transaction) =transactionDao.deleteTransaction(transaction)
+    override suspend fun deleteTransaction(transaction: Transaction) =
+        transactionDao.deleteTransaction(transaction)
 
     override fun getAllTransactions(): Flow<List<Transaction>> = transactionDao.getAllTransactions()
 
-    override fun getRecentTransactions(): Flow<List<Transaction>> = transactionDao.getRecentTransactions()
-    override fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>> = transactionDao.getTransactionsByType(type)
+    override fun getRecentTransactions(): Flow<List<Transaction>> =
+        transactionDao.getRecentTransactions()
 
-    override fun getTransactionsByCategory(category: TransactionCategory): Flow<List<Transaction>> = transactionDao.getTransactionsByCategory(category)
+    override fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>> =
+        transactionDao.getTransactionsByType(type)
+
+    override fun getTransactionsByCategory(category: TransactionCategory): Flow<List<Transaction>> =
+        transactionDao.getTransactionsByCategory(category)
 
 
     override fun getTotalIncome(): Flow<Double> = transactionDao.getTotalIncome()
 
     override fun getTotalExpense(): Flow<Double> = transactionDao.getTotalExpense()
 
-    override suspend fun getMonthlyExpenses(startOfMonth: Long, endOfMonth: Long): Double = transactionDao.getMonthlyExpenses(startOfMonth, endOfMonth)
+    override suspend fun getMonthlyExpenses(startOfMonth: Long, endOfMonth: Long): Double =
+        transactionDao.getMonthlyExpenses(startOfMonth, endOfMonth)
 
-    override fun getTransactionByNote(note: String): Flow<List<Transaction>> = transactionDao.getTransactionByNote(note)
+    override fun getTransactionByNote(note: String): Flow<List<Transaction>> =
+        transactionDao.getTransactionByNote(note)
 
 }

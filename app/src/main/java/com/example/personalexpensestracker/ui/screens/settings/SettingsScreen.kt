@@ -19,31 +19,23 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.ui.screens.addtransaction.AmountTextField
-import com.example.personalexpensestracker.ui.screens.history.HistoryViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen (
+fun SettingsScreen(
     modifier: Modifier = Modifier,
     viewModel: SettingsViewModel = viewModel(factory = AppViewModelProvider.factory)
 ) {
@@ -63,7 +55,7 @@ fun SettingsScreen (
 
                     Text(stringResource(R.string.monthly_budget))
                     TextButton(
-                        onClick = {viewModel.openBottomSheet()}
+                        onClick = { viewModel.openBottomSheet() }
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -71,7 +63,9 @@ fun SettingsScreen (
                             modifier = Modifier.weight(1f),
 
                             ) {
-                            Text(stringResource(R.string.saved_budget_format,
+                            Text(
+                                stringResource(
+                                R.string.saved_budget_format,
                                 uiState.value.monthlyBudget.ifEmpty { "0.0" }
                             )
                             )
@@ -92,12 +86,12 @@ fun SettingsScreen (
                 SwitchRow(
                     name = R.string.daily_summary,
                     checked = uiState.value.dailySummary,
-                    onCheckChanged = {viewModel.onDailySummaryChanged(it)}
+                    onCheckChanged = { viewModel.onDailySummaryChanged(it) }
                 )
                 SwitchRow(
                     name = R.string.budget_alert,
                     checked = uiState.value.budgetAlert,
-                    onCheckChanged = {viewModel.onBudgetAlertChanged(it)}
+                    onCheckChanged = { viewModel.onBudgetAlertChanged(it) }
                 )
             }
         }
@@ -108,15 +102,15 @@ fun SettingsScreen (
                 SwitchRow(
                     name = R.string.show_exchange_rates,
                     checked = uiState.value.showExchangeRate,
-                    onCheckChanged = {viewModel.onShowExchangeRateChanged(it)}
+                    onCheckChanged = { viewModel.onShowExchangeRateChanged(it) }
                 )
 
             }
         }
-        if(uiState.value.showBottomSheetState) {
+        if (uiState.value.showBottomSheetState) {
             item {
                 ModalBottomSheet(
-                    onDismissRequest = {viewModel.closeBottomSheet()}
+                    onDismissRequest = { viewModel.closeBottomSheet() }
                 ) {
                     Column(
                         modifier = Modifier
@@ -132,7 +126,7 @@ fun SettingsScreen (
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "Set your total monthly spending limit to receive budget alerts.",
+                            text = stringResource(R.string.bottom_sheet_text),
                             style = MaterialTheme.typography.bodyMedium,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -148,7 +142,7 @@ fun SettingsScreen (
                             modifier = Modifier.fillMaxWidth(),
                             shape = MaterialTheme.shapes.medium
                         ) {
-                            Text("Done")
+                            Text(stringResource(R.string.done))
                         }
                     }
                 }
@@ -165,7 +159,8 @@ private fun SwitchRow(
     checked: Boolean,
     modifier: Modifier = Modifier
 ) {
-    Row(modifier.fillMaxWidth(),
+    Row(
+        modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

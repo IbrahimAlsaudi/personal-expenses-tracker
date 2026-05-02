@@ -1,17 +1,23 @@
 package com.example.personalexpensestracker.ui.utility
 
-enum class TransactionCategory(val uiName: String, val type: TransactionType,) {
+import androidx.annotation.StringRes
+import com.example.personalexpensestracker.R
 
-    FOOD("Food", TransactionType.EXPENSE),
-    TRANSPORT("Transport", TransactionType.EXPENSE),
-    SHOPPING("Shopping", TransactionType.EXPENSE),
-    HEALTH("Health",TransactionType.EXPENSE),
-    ENTERTAINMENT("Entertainment",TransactionType.EXPENSE),
-    EXPENSE_OTHER("Other",TransactionType.EXPENSE),
+enum class TransactionCategory(
+    @StringRes val uiName: Int,
+    val type: TransactionType
+) {
 
-    SALARY("Salary",TransactionType.INCOME),
-    FREELANCE("Freelance",TransactionType.INCOME),
-    BUSINESS("Business",TransactionType.INCOME),
-    GIFT("Gift",TransactionType.INCOME),
-    INCOME_OTHER("Other",TransactionType.INCOME)
+    FOOD(R.string.category_food, TransactionType.EXPENSE),
+    TRANSPORT(R.string.category_transport, TransactionType.EXPENSE),
+    SHOPPING(R.string.category_shopping, TransactionType.EXPENSE),
+    HEALTH(R.string.category_health, TransactionType.EXPENSE),
+    ENTERTAINMENT(R.string.category_entertainment, TransactionType.EXPENSE),
+    EXPENSE_OTHER(R.string.category_other, TransactionType.EXPENSE),
+
+    SALARY(R.string.category_salary, TransactionType.INCOME),
+    FREELANCE(R.string.category_freelance, TransactionType.INCOME),
+    BUSINESS(R.string.category_business, TransactionType.INCOME),
+    GIFT(R.string.category_gift, TransactionType.INCOME),
+    INCOME_OTHER(R.string.category_other, TransactionType.INCOME)
 }

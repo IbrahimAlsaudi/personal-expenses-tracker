@@ -3,7 +3,6 @@ package com.example.personalexpensestracker.ui.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +19,6 @@ import com.example.personalexpensestracker.ui.theme.Green400
 import com.example.personalexpensestracker.ui.theme.Red400
 import com.example.personalexpensestracker.ui.utility.TransactionType
 import com.example.personalexpensestracker.ui.utility.icon
-import com.example.personalexpensestracker.ui.utility.toFormattedDate
 import com.example.personalexpensestracker.ui.utility.toTimeAgo
 
 @Composable
@@ -37,12 +35,12 @@ fun TransactionRow(
         Column(modifier = Modifier.weight(1f)) {
             Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
                 Text(
-                    text = transaction.category.uiName,
+                    text = stringResource(transaction.category.uiName),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1
                 )
-                if(transaction.note != null) {
+                if (transaction.note != null) {
                     Text(
                         text = "  ${transaction.note}",
                         style = MaterialTheme.typography.bodySmall,
