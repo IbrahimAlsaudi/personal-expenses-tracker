@@ -23,8 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.personalexpensestracker.AppViewModelProvider
+//import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.data.room.entity.ExchangeRate
 import com.example.personalexpensestracker.ui.components.FinanceStat
@@ -36,7 +37,7 @@ import com.example.personalexpensestracker.ui.utility.toTimeAgo
 @Composable
 fun DashboardScreen(
     modifier: Modifier = Modifier,
-    viewModel: DashboardViewModel = viewModel(factory = AppViewModelProvider.factory),
+    viewModel: DashboardViewModel = hiltViewModel()
 ) {
 
     val uiState by viewModel.uiState.collectAsState()

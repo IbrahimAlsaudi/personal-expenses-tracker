@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import com.example.personalexpensestracker.R
 
 enum class TransactionCategory(
-    @StringRes val uiName: Int,
-    val type: TransactionType
+    @param:StringRes val uiName: Int,
+    val type: TransactionType,
 ) {
 
     FOOD(R.string.category_food, TransactionType.EXPENSE),

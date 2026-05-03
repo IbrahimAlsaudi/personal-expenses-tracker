@@ -26,8 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.personalexpensestracker.AppViewModelProvider
+//import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.ui.components.FinanceStat
 import com.example.personalexpensestracker.ui.components.NoteTextField
@@ -39,7 +40,7 @@ import com.example.personalexpensestracker.ui.utility.chips
 @Composable
 fun HistoryScreen(
     modifier: Modifier = Modifier,
-    viewModel: HistoryViewModel = viewModel(factory = AppViewModelProvider.factory)
+    viewModel: HistoryViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsState()
 

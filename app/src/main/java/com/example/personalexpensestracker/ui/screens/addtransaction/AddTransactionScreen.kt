@@ -43,8 +43,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.personalexpensestracker.AppViewModelProvider
+//import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.ui.components.NoteTextField
 import com.example.personalexpensestracker.ui.theme.Blue200
@@ -57,7 +58,7 @@ import com.example.personalexpensestracker.ui.utility.icon
 fun AddTransactionScreen(
     modifier: Modifier = Modifier,
     navigateUp: () -> Unit,
-    viewModel: AddTransactionViewModel = viewModel(factory = AppViewModelProvider.factory)
+    viewModel: AddTransactionViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsState()
     Column(

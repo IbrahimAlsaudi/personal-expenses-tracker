@@ -11,7 +11,9 @@ import androidx.work.WorkManager
 import com.example.personalexpensestracker.worker.BudgetLimitReminder
 import com.example.personalexpensestracker.worker.DailySummaryReminder
 import com.example.personalexpensestracker.worker.ExchangeRateWorker
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 interface WorkManagerRepository {
     fun scheduleExchangeRateRefresh()
@@ -19,8 +21,9 @@ interface WorkManagerRepository {
     fun scheduleBudgetAlert()
 }
 
-class WorkManagerRepositoryImpl(context: Context): WorkManagerRepository {
-    private val workManager = WorkManager.getInstance(context)
+class WorkManagerRepositoryImpl @Inject constructor
+    (private val workManager: WorkManager): WorkManagerRepository {
+
 
     override fun scheduleExchangeRateRefresh() {
         val request = PeriodicWorkRequestBuilder<ExchangeRateWorker>(

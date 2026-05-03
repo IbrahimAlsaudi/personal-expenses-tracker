@@ -28,8 +28,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.personalexpensestracker.AppViewModelProvider
+//import com.example.personalexpensestracker.AppViewModelProvider
 import com.example.personalexpensestracker.R
 import com.example.personalexpensestracker.ui.screens.addtransaction.AmountTextField
 
@@ -37,7 +38,7 @@ import com.example.personalexpensestracker.ui.screens.addtransaction.AmountTextF
 @Composable
 fun SettingsScreen(
     modifier: Modifier = Modifier,
-    viewModel: SettingsViewModel = viewModel(factory = AppViewModelProvider.factory)
+    viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState.collectAsState()
     LazyColumn(

@@ -1,15 +1,19 @@
 package com.example.personalexpensestracker.worker
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.personalexpensestracker.data.repository.TransactionRepository
 import com.example.personalexpensestracker.data.repository.UserPreferences
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.first
 
-class DailySummaryReminder(
-    context: Context,
-    workerParameters: WorkerParameters,
+@HiltWorker
+class DailySummaryReminder @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParameters: WorkerParameters,
     private val userPreferences: UserPreferences,
     private val transactionRepository: TransactionRepository
 ): CoroutineWorker(context, workerParameters) {

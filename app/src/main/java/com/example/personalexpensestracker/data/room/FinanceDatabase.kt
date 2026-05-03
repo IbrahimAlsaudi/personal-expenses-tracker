@@ -16,16 +16,4 @@ abstract class FinanceDatabase: RoomDatabase() {
     abstract fun transactionDao(): TransactionDao
     abstract fun exchangeRateDao(): ExchangeRateDao
 
-    companion object {
-        @Volatile
-        private var instance: FinanceDatabase? = null
-        fun getDatabase(context: Context): FinanceDatabase {
-            return instance ?: synchronized(this){
-                Room.databaseBuilder(context, FinanceDatabase::class.java, "finance_database")
-                    .fallbackToDestructiveMigration(false)
-                    .build()
-                    .also { instance = it }
-            }
-        }
-    }
 }

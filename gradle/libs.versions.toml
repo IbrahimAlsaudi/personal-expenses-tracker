@@ -17,6 +17,7 @@ lifecycle           = "2.10.0"
 navigationCompose   = "2.9.8"
 gson                = "2.14.0"
 ksp                 = "2.3.4"
+hilt                = "2.59.2"
 
 
 [libraries]
@@ -61,7 +62,12 @@ androidx-navigation-compose     = { group = "androidx.navigation", name = "navig
 # Gson
 gson                            = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 
+# Hilt
+hilt-android                    = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler           = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

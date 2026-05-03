@@ -5,8 +5,9 @@ import com.example.personalexpensestracker.data.room.entity.Transaction
 import com.example.personalexpensestracker.ui.utility.TransactionCategory
 import com.example.personalexpensestracker.ui.utility.TransactionType
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class OfflineTransactionRepository(
+class OfflineTransactionRepository @Inject constructor(
     private val transactionDao: TransactionDao
 ) : TransactionRepository {
     override suspend fun addTransaction(transaction: Transaction) =

@@ -7,6 +7,7 @@ import com.example.personalexpensestracker.data.repository.TransactionRepository
 import com.example.personalexpensestracker.data.repository.UserPreferences
 import com.example.personalexpensestracker.data.room.entity.ExchangeRate
 import com.example.personalexpensestracker.data.room.entity.Transaction
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +16,10 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class DashboardViewModel(
+@HiltViewModel
+class DashboardViewModel @Inject constructor(
     transactionRepository: TransactionRepository,
     exchangeRateRepository: ExchangeRateRepository,
     userPreferences: UserPreferences,

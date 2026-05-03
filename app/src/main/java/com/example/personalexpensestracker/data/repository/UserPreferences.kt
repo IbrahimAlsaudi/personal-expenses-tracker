@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 interface UserPreferences {
     val monthlyBudget: Flow<Double>
@@ -23,7 +24,7 @@ interface UserPreferences {
     suspend fun saveShowExchangeRate(showExchangeRate: Boolean)
 }
 
-class UserPreferencesImpl(
+class UserPreferencesImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ): UserPreferences {
 

@@ -4,8 +4,9 @@ import com.example.personalexpensestracker.data.room.dao.ExchangeRateDao
 import com.example.personalexpensestracker.data.room.entity.ExchangeRate
 import com.example.personalexpensestracker.network.FinanceApiService
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class ExchangeRateRepositoryImpl(
+class ExchangeRateRepositoryImpl @Inject constructor(
     private val exchangeRateDao: ExchangeRateDao,
     private val apiService: FinanceApiService
 ) : ExchangeRateRepository {
