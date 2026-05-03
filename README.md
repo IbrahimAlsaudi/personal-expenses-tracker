@@ -13,7 +13,7 @@ A modern, full-featured Android application built with **Jetpack Compose** to he
 *   **Preferences**: **DataStore** for storing user settings and budget info.
 *   **Background Tasks**: **WorkManager** for reliable periodic background syncs and notifications.
 *   **Networking**: **Retrofit** for fetching real-time exchange rates from external APIs.
-*   **Dependency Injection**: Manual injection via `AppContainer`.
+*   **Dependency Injection**: Hilt (hilt branch) & Manual injection via `AppContainer` (master branch).
 *   **Animations**: Compose Animation API.
 
 
