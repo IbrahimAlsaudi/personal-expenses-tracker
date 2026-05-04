@@ -4,6 +4,7 @@ A modern, full-featured Android application built with **Jetpack Compose** to he
 
 ---
 
+> 
 ##  Tech Stack
 
 *   **UI**: Jetpack Compose (Material 3)
