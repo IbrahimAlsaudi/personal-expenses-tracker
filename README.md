@@ -79,7 +79,14 @@ A modern, full-featured Android application built with **Jetpack Compose** to he
 
 ---
 
+## Testing
+Unit tests written for `HistoryViewModel` and `DashboardViewModel` using:
+- **JUnit4** — test framework
+- **Turbine** — Flow testing
+- **kotlinx-coroutines-test** — coroutine dispatcher control
 
+Coverage includes: search filtering, transaction type/category filtering, 
+combine + flatMapLatest toggle behavior, and balance calculation.
 
 ---
 
