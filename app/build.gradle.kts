@@ -28,7 +28,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -83,14 +83,22 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     // Hilt with WorkManager
-    implementation("androidx.hilt:hilt-work:1.3.0")
-    ksp("androidx.hilt:hilt-compiler:1.3.0")
+    implementation(libs.androidx.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
 
     // Hilt with Compose
-    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
+    // Coroutines testing — for viewModelScope and Flow
+    testImplementation(libs.kotlinx.coroutines.test)
+
+// Turbine — for testing Flows cleanly
+    testImplementation(libs.turbine)
+
+// MockK — Kotlin-friendly mocking (Step 4, but add it now)
+    testImplementation(libs.mockk)
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
