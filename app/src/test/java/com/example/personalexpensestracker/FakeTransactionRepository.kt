@@ -26,7 +26,7 @@ class FakeTransactionRepository: TransactionRepository {
     override fun getAllTransactions(): Flow<List<Transaction>> = transactions
 
     override fun getRecentTransactions(): Flow<List<Transaction>> {
-        return  if (transactions.value.size > 5) transactions.map { it.subList(0,5) } else transactions
+        return  transactions.map { it.take(5) }
     }
 
     override fun getTransactionsByType(type: TransactionType): Flow<List<Transaction>> {
